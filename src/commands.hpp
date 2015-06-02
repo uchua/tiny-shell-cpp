@@ -97,10 +97,4 @@ bool lsb(string s)
 command ls = command ("ls", &lsa, &lsb);
 command list = command ("list", &lsa, &lsb);
 
-/*
- * 
- * 
- * 
- */
-
 #endif // COMMANDS_HPP
