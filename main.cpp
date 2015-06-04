@@ -142,7 +142,7 @@ int main(int argc, string argv)
      * - Begin the main loop of the shell.
      */
     load();
-	printer("Welcome to Tiny Shell!");
+	printer("    _\n  (\\_/)\n (_/ \\_)\n(/ \\_/ \\) Welcome to\n(\\_/ \\_/) Tiny Shell (C++)\n ( \\_/ )\n  (/_\\)\n");
     mainloop(argv);
 	return 0;
 }
