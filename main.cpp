@@ -101,6 +101,7 @@ void load()
     COMMANDS.insert(cmdpair(echo));
     COMMANDS.insert(cmdpair(ls));
     COMMANDS.insert(cmdpair(list));
+    COMMANDS.insert(cmdpair(cd));
 }
 
 void mainloop(string )

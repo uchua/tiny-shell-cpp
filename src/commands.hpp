@@ -80,7 +80,6 @@ bool lsa()
         closedir(d); // Close the directory
     }
     #endif
-    return true;
 }
 
 bool lsb(string s)
@@ -96,5 +95,41 @@ bool lsb(string s)
  */ 
 command ls = command ("ls", &lsa, &lsb);
 command list = command ("list", &lsa, &lsb);
+
+bool cda()
+{
+    // The cd, or current directory, command prints ACTIVE_DIR to the terminal.
+    printer(ACTIVE_DIR);
+    return true;
+}
+
+bool cdb(string s)
+{
+    // When given arguements, the cd command changes the current directory
+    #ifdef _WIN32
+    /*
+     * Reusing some code from the ls command, you can check if a given directroy exists.
+     * If it does, you can then simply change the ACTIVE_DIR variable to that directory
+     * so all further commands run on that directory.
+     */
+    HANDLE hFind;
+    WIN32_FIND_DATA file;
+    hFind = FindFirstFile(s.c_str(),&file); // Finds first file in the given directory
+    if (hFind != INVALID_HANDLE_VALUE) { // If the file isn't invalid continue
+        ACTIVE_DIR = s;
+        FindClose(hFind);
+    }
+    #else
+    DIR d*;
+    struct dirent *dir;
+    d = opendir(s.c_str()); // Open the directory
+    if (d) { // Makes sure the directory exists before continuing
+        ACTIVE_DIR = s;
+        closedir(d); // Close the directory
+    }
+    #endif
+}
+
+command cd = command ("cd", &cda, &cdb);
 
 #endif // COMMANDS_HPP
