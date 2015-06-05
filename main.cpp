@@ -104,7 +104,7 @@ void load()
     COMMANDS.insert(cmdpair(cd));
 }
 
-void mainloop(string )
+void mainloop()
 {
     /*
      * You don't want to have to keep relaunching the shell for each command, right?
@@ -133,7 +133,7 @@ void mainloop(string )
  * The main function of the main.cpp file is the first thing executed
  * when the compiled program is ran. Everything starts here.
  */
-int main(int argc, string argv)
+int main(int argc, char** argv)
 {
     /*
      * Start up the shell in a few steps:
@@ -142,7 +142,7 @@ int main(int argc, string argv)
      * - Begin the main loop of the shell.
      */
     load();
-	printer("    _\n  (\\_/)\n (_/ \\_)\n(/ \\_/ \\) Welcome to\n(\\_/ \\_/) Tiny Shell (C/C++)\n ( \\_/ )\n  (/_\\)\n");
-    mainloop(argv);
-	return 0;
+    printer("    _\n  (\\_/)\n (_/ \\_)\n(/ \\_/ \\) Welcome to\n(\\_/ \\_/) Tiny Shell (C/C++)\n ( \\_/ )\n  (/_\\)\n");
+    mainloop();
+    return 0;
 }

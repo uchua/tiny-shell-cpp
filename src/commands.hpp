@@ -70,10 +70,10 @@ bool lsa()
      * Therefor, you'll need to use a different method to access the filesystem.
      * In this case, dirent.h is used.
      */
-    DIR d*;
+    DIR *d;
     struct dirent *dir;
     d = opendir(ACTIVE_DIR.c_str()); // Open the directory
-    if (d) { // Makes sure the directory exists before continuing
+    if (d != NULL) { // Makes sure the directory exists before continuing
         while ((dir = readdir(d)) != NULL) { // While there are more files in the directory
             cout << dir->d_name << endl;     // write their names to the terminal
         }
@@ -111,6 +111,7 @@ bool cdb(string s)
      * Reusing some code from the ls command, you can check if a given directroy exists.
      * If it does, you can then simply change the ACTIVE_DIR variable to that directory
      * so all further commands run on that directory.
+     * - Note that, for the current implementation, a full path is required
      */
     HANDLE hFind;
     WIN32_FIND_DATA file;
@@ -120,10 +121,10 @@ bool cdb(string s)
         FindClose(hFind);
     }
     #else
-    DIR d*;
+    DIR *d;
     struct dirent *dir;
     d = opendir(s.c_str()); // Open the directory
-    if (d) { // Makes sure the directory exists before continuing
+    if (d != NULL) { // Makes sure the directory exists before continuing
         ACTIVE_DIR = s;
         closedir(d); // Close the directory
     }
